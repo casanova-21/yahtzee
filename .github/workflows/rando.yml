@@ -55,5 +55,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: Print_the_roll
-      run: echo "$FIRSTNUM $SECONDNUM $THIRDNUM $FOURTHNUM $FIFTHNUM
+      run: echo "$FIRSTNUM $SECONDNUM $THIRDNUM $FOURTHNUM $FIFTHNUM"
       shell: bash 
