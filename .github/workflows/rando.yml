@@ -51,12 +51,9 @@ jobs:
     - id: Print_fifth_num
       run: echo $FIFTHNUM
       shell: bash
-  Sixth-number:
+  Print-roll:
     runs-on: ubuntu-latest
     steps:
-    - id: Roll_sixth_dice
-      run: echo "SIXTHNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
-      shell: bash
-    - id: Print_sixth_num
-      run: echo $SIXTHNUM
-      shell: bash
+    - id: Print_the_roll
+      run: echo "$FIRSTNUM $SECONDNUM $THIRDNUM $FOURTHNUM $FIFTHNUM
+      shell: bash 
