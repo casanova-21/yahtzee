@@ -9,8 +9,11 @@ jobs:
   Roll-dice:
     runs-on: ubuntu-latest
     steps:
+    outputs:
+      first_die: ${{steps.Roll_first_dice.FIRSTNUM}}
     - id: Roll_first_dice
       run: echo "FIRSTNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
+      run: echo "::set-output name=FIRSTNUM::${{env.FIRSTROLL}}
       shell: bash
     - id: Print_first_num
       run: echo $FIRSTNUM
@@ -41,4 +44,4 @@ jobs:
       shell: bash
     - id: Print_the_roll
       run: echo "${{ env.FIRSTNUM }} ${{env.SECONDNUM}} ${{env.THIRDNUM}} ${{env.FOURTHNUM}} ${{env.FIFTHNUM}}"
-      shell: bash 
+      shell: bash
