@@ -9,10 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - id: Roll first dice
+    - id: Roll_first_dice
       run: echo "FIRSTNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
       shell: bash
     - uses: actions/checkout@v2
-    - id: Print first num
+    - id: Print_first_num
       run: echo $FIRSTNUM
       shell: bash
