@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  First-number:
+  Roll-dice:
     runs-on: ubuntu-latest
     steps:
     - id: Roll_first_dice
@@ -40,5 +40,5 @@ jobs:
       run: echo $FIFTHNUM
       shell: bash
     - id: Print_the_roll
-      run: echo "${{ env.FIRSTNUM }} $SECONDNUM $THIRDNUM $FOURTHNUM $FIFTHNUM"
+      run: echo "${{ env.FIRSTNUM }} ${{env.SECONDNUM}} ${{env.THIRDNUM}} ${{env.FOURTHNUM}} ${{env.FIFTHNUM}}"
       shell: bash 
