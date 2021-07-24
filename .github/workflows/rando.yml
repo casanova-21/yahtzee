@@ -52,8 +52,9 @@ jobs:
       run: echo $FIFTHNUM
       shell: bash
   Print-roll:
+    needs: [First-number,Second-number,Third-number,Fourth-number,Fifth-number]
     runs-on: ubuntu-latest
     steps:
     - id: Print_the_roll
-      run: echo "${{ env.FIRSTNUM }} $SECONDNUM $THIRDNUM $FOURTHNUM $FIFTHNUM
+      run: echo "${{ env.FIRSTNUM }} $SECONDNUM $THIRDNUM $FOURTHNUM $FIFTHNUM"
       shell: bash 
