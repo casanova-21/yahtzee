@@ -2,7 +2,7 @@ name: Yahtzee
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 
 jobs:
