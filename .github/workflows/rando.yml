@@ -6,13 +6,57 @@ on:
 
 
 jobs:
-  build:
+  First-number:
     runs-on: ubuntu-latest
     steps:
     - id: Roll_first_dice
       run: echo "FIRSTNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
       shell: bash
-    - uses: actions/checkout@v2
     - id: Print_first_num
       run: echo $FIRSTNUM
+      shell: bash
+  Second-number:
+    runs-on: ubuntu-latest
+    steps:
+    - id: Roll_second_dice
+      run: echo "SECONDNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
+      shell: bash
+    - id: Print_second_num
+      run: echo $SECONDNUM
+      shell: bash
+  Third-number:
+    runs-on: ubuntu-latest
+    steps:
+    - id: Roll_first_dice
+      run: echo "THIRDNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
+      shell: bash
+    - id: Print_third_num
+      run: echo $THIRDNUM
+      shell: bash
+  Fourth-number:
+    runs-on: ubuntu-latest
+    steps:
+    - id: Roll_fourth_dice
+      run: echo "FOURTHNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
+      shell: bash
+    - id: Print_fourth_num
+      run: echo $FOURTHNUM
+      shell: bash
+  Fifth-number:
+    runs-on: ubuntu-latest
+    steps:
+    - id: Roll_fifth_dice
+      run: echo "FIFTHNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
+      shell: bash
+    - id: Print_fifth_num
+      run: echo $FIFTHNUM
+      shell: bash
+  Sixth-number:
+    runs-on: ubuntu-latest
+    steps:
+    - id: Roll_sixth_dice
+      run: echo "SIXTHNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
+      shell: bash
+    - id: Print_sixth_num
+      run: echo $SIXTHNUM
       shell: bash
