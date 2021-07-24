@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     outputs:
-      first_die: ${{steps.Roll_first_dice.FIRSTNUM}}
+      first_die: ${{ steps.Roll_first_dice.outputs.FIRSTNUM }}
     - id: Roll_first_dice
       run: echo "FIRSTNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
       run: echo "::set-output name=FIRSTNUM::${{env.FIRSTROLL}}
