@@ -15,6 +15,7 @@ jobs:
       run: |
         echo "FIRSTNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
         echo $FIRSTNUM
+        echo hi
         echo ::set-output name=FIRSTROLL::$FIRSTNUM
       shell: bash
     - id: Print_first_num
