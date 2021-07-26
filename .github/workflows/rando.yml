@@ -52,4 +52,4 @@ jobs:
     steps:
     - id: print-final-roll
       run:
-        echo "Final roll is ${{needs.Roll-dice.ouputs.first_die}}"
+        echo "Final roll is ${{needs.Roll-dice.outputs.first_die}}"
