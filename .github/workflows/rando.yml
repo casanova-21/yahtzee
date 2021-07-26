@@ -9,7 +9,7 @@ jobs:
   Roll-dice:
     runs-on: ubuntu-latest
     outputs:
-      first_die: ${{ steps.Roll_first_die.outputs.$FIRSTROLL }}
+      first_die: ${{ steps.Roll_first_die.outputs.FIRSTROLL }}
     steps:
     - id: Roll_first_die
       run: |
