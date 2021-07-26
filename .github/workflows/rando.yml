@@ -13,8 +13,8 @@ jobs:
     steps:
     - id: Roll_first_die
       run: |
-        echo "FIRSTNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
-        echo ${{ env.FIRSTNUM }}
+        echo FIRSTNUM=$(ruby -e 'puts rand(1..6)')
+        echo $FIRSTNUM
         echo hi
         echo ::set-output name=FIRSTROLL::$FIRSTNUM
       shell: bash
