@@ -14,6 +14,7 @@ jobs:
     - id: Roll_first_die
       run: |
         echo "FIRSTNUM=$(ruby -e 'puts rand(1..6)')" >> $GITHUB_ENV
+        echo "FIRSTNUM is ${{ env.$FIRSTN"UM}}"
         echo ::set-output name=FIRSTROLL::${{env.FIRSTNUM}}
       shell: bash
     - id: Print_first_num
@@ -52,4 +53,4 @@ jobs:
     steps:
     - id: print-final-roll
       run:
-        echo "Final roll is ${{needs.Roll-dice.outputs.first_die}}"
+        echo Final roll is ${{needs.Roll-dice.outputs.first_die}}
