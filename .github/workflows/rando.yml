@@ -44,7 +44,7 @@ jobs:
       run: echo $FIFTHNUM
       shell: bash
     - id: Print_the_roll
-      run: echo "$FIRSTNUM ${{env.SECONDNUM}} ${{env.THIRDNUM}} ${{env.FOURTHNUM}} ${{env.FIFTHNUM}}"
+      run: echo "$FIRSTNUM SECONDNUM THIRDNUM FOURTHNUM FIFTHNUM"
       shell: bash
   Print-Roll:
     runs-on: ubuntu-latest
