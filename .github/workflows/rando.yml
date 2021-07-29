@@ -6,6 +6,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   Roll-first-die:
@@ -55,12 +56,15 @@ jobs:
         echo ::set-output name=FIFTHROLL::$FIFTHNUM
   Print-Roll:
     runs-on: ubuntu-latest
+    outputs:
+      final_roll: ${{ steps.print-first-roll.outputs.final_roll }}
     needs: [ Roll-first-die,Roll-second-die,Roll-third-die,Roll-fourth-die,Roll-fifth-die ]
     steps:
     - uses: actions/checkout@v2
     - id: print-first-roll
-      run:
+      run: |
         echo First roll is ${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
+        echo ::set-output name=final_roll::${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
     - uses: JasonEtco/create-an-issue@v2
       env:
         first_die: ${{needs.Roll-first-die.outputs.first_die}}
@@ -69,3 +73,20 @@ jobs:
         fourth_die: ${{needs.Roll-fourth-die.outputs.fourth_die}}
         fifth_die: ${{needs.Roll-fifth-die.outputs.fifth_die}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  Build-and-Push-Docker-Image:
+    runs-on: ubuntu-latest
+    needs: [ Print-Roll ]
+    name: Docker Build, Tag, Push
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - run:
+        echo Final roll is ${{needs.Print-Roll.outputs.final_roll}}
+    - name: Build container image
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{github.actor}}
+        password: ${{secrets.GITHUB_TOKEN}}
+        registry: docker.pkg.github.com
+        repository: casanova-21/yahtzee
+        tags: ${{needs.Print-Roll.outputs.final_roll}}
