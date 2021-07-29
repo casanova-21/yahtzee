@@ -7,40 +7,67 @@ on:
     branches: [main]
 
 jobs:
-  Roll-dice:
+  Roll-first-die:
     runs-on: ubuntu-latest
     outputs:
       first_die: ${{ steps.Roll_dice.outputs.FIRSTROLL }}
-      second_die: ${{ steps.Roll_dice.outputs.SECONDROLL }}
-      third_die: ${{ steps.Roll_dice.outputs.THIRDROLL }}
-      fourth_die: ${{ steps.Roll_dice.outputs.FOURTHROLL }}
-      fifth_die: ${{ steps.Roll_dice.outputs.FIFTHROLL }}
     steps:
     - id: Roll_dice
       run: |
         FIRSTNUM=$(ruby -e 'puts rand(1..6)')
-        SECONDNUM=$(ruby -e 'puts rand(1..6)')
-        THIRDNUM=$(ruby -e 'puts rand(1..6)')
-        FOURTHNUM=$(ruby -e 'puts rand(1..6)')
-        FIFTHNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=FIRSTROLL::$FIRSTNUM
-        echo ::set-output name=SECONDROLL::$SECONDNUM
-        echo ::set-output name=THIRDROLL::$THIRDNUM
-        echo ::set-output name=FOURTHROLL::$FOURTHNUM
-        echo ::set-output name=FIFTHROLL::$FIFTHNUM
-  Print-Roll:
+  Roll-second-die:
     runs-on: ubuntu-latest
-    needs: Roll-dice
+    outputs:
+      second_die: ${{ steps.Roll_dice.outputs.SECONDROLL }}
     steps:
+    - id: Roll_dice
+      run: |
+        SECONDNUM=$(ruby -e 'puts rand(1..6)')
+        echo ::set-output name=SECONDROLL::$SECONDNUM
+  Roll-third-die:
+    runs-on: ubuntu-latest
+    outputs:
+      third_die: ${{ steps.Roll_dice.outputs.THIRDROLL }}
+    steps:
+    - id: Roll_dice
+      run: |
+        THIRDNUM=$(ruby -e 'puts rand(1..6)')
+        echo ::set-output name=THIRDROLL::$THIRDNUM
+  Roll-fourth-die:
+    runs-on: ubuntu-latest
+    outputs:
+      fourth_die: ${{ steps.Roll_dice.outputs.FOURTHROLL }}
+    steps:
+    - id: Roll_dice
+      run: |
+        FOURTHNUM=$(ruby -e 'puts rand(1..6)')
+        echo ::set-output name=FOURTHROLL::$FOURTHNUM
+  Roll-fifth-die:
+    runs-on: ubuntu-latest
+    outputs:
+      fifth_die: ${{ steps.Roll_dice.outputs.FIFTHROLL }}
+    steps:
+    - id: Roll_dice
+      run: |
+        FIFTHNUM=$(ruby -e 'puts rand(1..6)')
+        echo ::set-output name=FIFTHROLL::$FIFTHNUM
+  Print-First-Roll:
+    runs-on: ubuntu-latest
+    needs: [ Roll-first-die,Roll-second-die,Roll-third-die,Roll-fourth-die,Roll-fifth-die ]
+    steps:
+
     - uses: actions/checkout@v2
-    - id: print-final-roll
+    - id: print-first-roll
       run:
-        echo Final roll is ${{needs.Roll-dice.outputs.first_die}}${{needs.Roll-dice.outputs.second_die}}${{needs.Roll-dice.outputs.third_die}}${{needs.Roll-dice.outputs.fourth_die}}${{needs.Roll-dice.outputs.fifth_die}}
+        echo First roll is ${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
     - uses: JasonEtco/create-an-issue@v2
       env: 
-        first_die: ${{needs.Roll-dice.outputs.first_die}}
-        second_die: ${{needs.Roll-dice.outputs.second_die}}
-        third_die: ${{needs.Roll-dice.outputs.third_die}}
-        fourth_die: ${{needs.Roll-dice.outputs.fourth_die}}
-        fifth_die: ${{needs.Roll-dice.outputs.fifth_die}}
+        first_die: ${{needs.Roll-first-die.outputs.first_die}}
+        second_die: ${{needs.Roll-second-die.outputs.second_die}}
+        third_die: ${{needs.Roll-third-die.outputs.third_die}}
+        fourth_die: ${{needs.Roll-fourth-die.outputs.fourth_die}}
+        fifth_die: ${{needs.Roll-fifth-die.outputs.fifth_die}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
