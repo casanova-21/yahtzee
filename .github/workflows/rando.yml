@@ -38,4 +38,9 @@ jobs:
         echo Final roll is ${{needs.Roll-dice.outputs.first_die}}${{needs.Roll-dice.outputs.second_die}}${{needs.Roll-dice.outputs.third_die}}${{needs.Roll-dice.outputs.fourth_die}}${{needs.Roll-dice.outputs.fifth_die}}
     - uses: JasonEtco/create-an-issue@v2
       env: 
+        first_die: ${{needs.Roll-dice.outputs.first_die}}
+        second_die: ${{needs.Roll-dice.outputs.second_die}}
+        third_die: ${{needs.Roll-dice.outputs.third_die}}
+        fourth_die: ${{needs.Roll-dice.outputs.fourth_die}}
+        fifth_die: ${{needs.Roll-dice.outputs.fifth_die}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
