@@ -88,5 +88,5 @@ jobs:
         username: ${{github.actor}}
         password: ${{secrets.GITHUB_TOKEN}}
         registry: docker.pkg.github.com
-        repository: casanova-21/yahtzee
+        repository: casanova-21/yahtzee/yahtzee
         tags: ${{needs.Print-Roll.outputs.final_roll}}
