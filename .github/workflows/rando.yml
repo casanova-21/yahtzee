@@ -2,8 +2,9 @@ name: Yahtzee
 
 on:
   push:
-    branches: [main, refactor_pipeline]
-
+    branches: [main]
+  pull_request: 
+    branches: [main]
 
 jobs:
   Roll-first-die:
@@ -51,10 +52,21 @@ jobs:
       run: |
         FIFTHNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=FIFTHROLL::$FIFTHNUM
-  Print-First-Roll:
+  Print-Roll:
     runs-on: ubuntu-latest
     needs: [ Roll-first-die,Roll-second-die,Roll-third-die,Roll-fourth-die,Roll-fifth-die ]
     steps:
+    - uses: actions/checkout@v2
     - id: print-first-roll
       run:
         echo First roll is ${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
+    - uses: JasonEtco/create-an-issue@v2
+      env: 
+        first_die: ${{needs.Roll-first-die.outputs.first_die}}
+        second_die: ${{needs.Roll-second-die.outputs.second_die}}
+        third_die: ${{needs.Roll-third-die.outputs.third_die}}
+        fourth_die: ${{needs.Roll-fourth-die.outputs.fourth_die}}
+        fifth_die: ${{needs.Roll-fifth-die.outputs.fifth_die}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
