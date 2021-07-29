@@ -66,6 +66,8 @@ jobs:
         echo First roll is ${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
         echo ::set-output name=final_roll::${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
     - uses: JasonEtco/create-an-issue@v2
+      with:
+        filename: .github/ISSUE_TEMPLATE/issue_from_action.md
       env:
         first_die: ${{needs.Roll-first-die.outputs.first_die}}
         second_die: ${{needs.Roll-second-die.outputs.second_die}}
