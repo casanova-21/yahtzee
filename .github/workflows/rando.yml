@@ -1,9 +1,10 @@
 name: Yahtzee
 
+
 on:
   push:
     branches: [main]
-  pull_request: 
+  pull_request:
     branches: [main]
 
 jobs:
@@ -61,12 +62,10 @@ jobs:
       run:
         echo First roll is ${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
     - uses: JasonEtco/create-an-issue@v2
-      env: 
+      env:
         first_die: ${{needs.Roll-first-die.outputs.first_die}}
         second_die: ${{needs.Roll-second-die.outputs.second_die}}
         third_die: ${{needs.Roll-third-die.outputs.third_die}}
         fourth_die: ${{needs.Roll-fourth-die.outputs.fourth_die}}
         fifth_die: ${{needs.Roll-fifth-die.outputs.fifth_die}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
