@@ -53,8 +53,8 @@ jobs:
         echo ::set-output name=FIFTHROLL::$FIFTHNUM
   Print-First-Roll:
     runs-on: ubuntu-latest
-    needs: Roll-dice
+    needs: [ Roll-first-die,Roll-second-die,Roll-third-die,Roll-fourth-die,Roll-fifth-die ]
     steps:
     - id: print-first-roll
       run:
-        echo First roll is ${{needs.Roll-dice.outputs.first_die}}${{needs.Roll-dice.outputs.second_die}}${{needs.Roll-dice.outputs.third_die}}${{needs.Roll-dice.outputs.fourth_die}}${{needs.Roll-dice.outputs.fifth_die}}
+        echo First roll is ${{needs.Roll-first-die.outputs.first_die}}${{needs.Roll-second-die.outputs.second_die}}${{needs.Roll-third-die.outputs.third_die}}${{needs.Roll-fourth-die.outputs.fourth_die}}${{needs.Roll-fifth-die.outputs.fifth_die}}
