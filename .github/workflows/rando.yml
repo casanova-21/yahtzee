@@ -10,7 +10,7 @@ on:
 
 jobs:
   Roll-first-die:
-    runs-on: ubuntu-latest
+    runs-on: casanova
     outputs:
       first_die: ${{ steps.Roll_dice.outputs.FIRSTROLL }}
     steps:
