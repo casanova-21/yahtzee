@@ -1,3 +1,3 @@
 # yahtzee
 Yahtzee
-Author: John
+Author: John C
