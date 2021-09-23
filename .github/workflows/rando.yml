@@ -19,7 +19,7 @@ jobs:
         FIRSTNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=FIRSTROLL::$FIRSTNUM
   Roll-second-die:
-    runs-on: ubuntu-latest
+    runs-on: [ linux, self-hosted, x64, ephemeral ]
     outputs:
       second_die: ${{ steps.Roll_dice.outputs.SECONDROLL }}
     steps:
