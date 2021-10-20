@@ -76,7 +76,7 @@ jobs:
         fifth_die: ${{needs.Roll-fifth-die.outputs.fifth_die}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Build-and-Push-Docker-Image:
-    runs-on: runs-on: [ linux, self-hosted, x64, rootless ]
+    runs-on: [ linux, self-hosted, x64, rootless ]
     needs: [ Print-Roll ]
     name: Docker Build, Tag, Push
     steps:
