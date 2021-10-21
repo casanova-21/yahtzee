@@ -10,7 +10,7 @@ on:
 
 jobs:
   Roll-first-die:
-    runs-on: [ linux, self-hosted, x64, rootless5 ]
+    runs-on: [ linux, self-hosted, x64, rootless10 ]
     outputs:
       first_die: ${{ steps.Roll_dice.outputs.FIRSTROLL }}
     steps:
@@ -19,7 +19,7 @@ jobs:
         FIRSTNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=FIRSTROLL::$FIRSTNUM
   Roll-second-die:
-    runs-on: [ linux, self-hosted, x64, rootless5 ]
+    runs-on: [ linux, self-hosted, x64, rootless10 ]
     outputs:
       second_die: ${{ steps.Roll_dice.outputs.SECONDROLL }}
     steps:
@@ -28,7 +28,7 @@ jobs:
         SECONDNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=SECONDROLL::$SECONDNUM
   Roll-third-die:
-    runs-on: [ linux, self-hosted, x64, rootless5 ]
+    runs-on: [ linux, self-hosted, x64, rootless10 ]
     outputs:
       third_die: ${{ steps.Roll_dice.outputs.THIRDROLL }}
     steps:
@@ -37,7 +37,7 @@ jobs:
         THIRDNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=THIRDROLL::$THIRDNUM
   Roll-fourth-die:
-    runs-on: [ linux, self-hosted, x64, rootless5 ]
+    runs-on: [ linux, self-hosted, x64, rootless10 ]
     outputs:
       fourth_die: ${{ steps.Roll_dice.outputs.FOURTHROLL }}
     steps:
@@ -46,7 +46,7 @@ jobs:
         FOURTHNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=FOURTHROLL::$FOURTHNUM
   Roll-fifth-die:
-    runs-on: [ linux, self-hosted, x64, rootless5 ]
+    runs-on: [ linux, self-hosted, x64, rootless10 ]
     outputs:
       fifth_die: ${{ steps.Roll_dice.outputs.FIFTHROLL }}
     steps:
@@ -55,7 +55,7 @@ jobs:
         FIFTHNUM=$(ruby -e 'puts rand(1..6)')
         echo ::set-output name=FIFTHROLL::$FIFTHNUM
   Print-Roll:
-    runs-on: [ linux, self-hosted, x64, rootless5 ]
+    runs-on: [ linux, self-hosted, x64, rootless10 ]
     outputs:
       final_roll: ${{ steps.print-first-roll.outputs.final_roll }}
     needs: [ Roll-first-die,Roll-second-die,Roll-third-die,Roll-fourth-die,Roll-fifth-die ]
@@ -76,7 +76,7 @@ jobs:
         fifth_die: ${{needs.Roll-fifth-die.outputs.fifth_die}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Build-and-Push-Docker-Image:
-    runs-on: [ linux, self-hosted, x64, rootless5 ]
+    runs-on: [ linux, self-hosted, x64, rootless10 ]
     needs: [ Print-Roll ]
     name: Docker Build, Tag, Push
     steps:
