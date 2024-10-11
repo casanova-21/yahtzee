@@ -1,4 +1,5 @@
 # yahtzee
 Yahtzee
-Author: John
-Hell: Yeah
+Author: John<br>
+Hell: Yeah<br>
+Aww: Yiss<br>
